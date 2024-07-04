@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
     'bg-gradient-to-r', 'from-orange-400', 'via-orange-500', 'to-orange-600',
     'hover:bg-gradient-to-br', 'focus:ring-4', 'focus:outline-none', 'focus:ring-orange-300',
-    'dark:focus:ring-orange-800','text-white', 
+    'dark:focus:ring-orange-800', 
   ];
   buttons.forEach(button => {
     button.addEventListener('click', function() {

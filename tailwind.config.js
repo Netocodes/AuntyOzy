@@ -28,6 +28,7 @@ export const theme = {
   fontFamily: {
     sans: ['Graphik', 'sans-serif'],
     serif: ['Merriweather', 'serif'],
+    dance: ['Playwrite NL', 'cursive;']
   },
   extend: {
     spacing: {
