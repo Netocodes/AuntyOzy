@@ -7,6 +7,7 @@
     <link href="dist/output.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 
+<script src="./auth/auth.js"></script>
 </head>
 <body>
      <!-- ========== HEADER ========== -->
@@ -623,18 +624,6 @@
 <script src="https://cdn.jsdelivr.net/npm/preline@2.3.0/dist/preline.js"></script>
     <script defer src="./src/func.js"></script>
 
-     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("DOM fully loaded and parsed");
-        console.log("Preline object:", window.Preline);
-        if (window.Preline) {
-            window.Preline.init();
-            console.log("Preline initialized successfully.");
-        } else {
-            console.error("Preline is not loaded.");
-        }
-    });
 
-     </script>
 </body>
 </html>
