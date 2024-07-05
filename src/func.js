@@ -1,3 +1,6 @@
+
+
+
 const navChange = document.getElementById("changeNavCol");
 const imgCtrl = document.getElementById("imgCtrl");
 const firstName = document.getElementById("hs-hero-name-1");
@@ -54,10 +57,5 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });  
 
-document.addEventListener('DOMContentLoaded', function() {
-  if (window.Preline) {
-      window.Preline.init();
-  }
-});
 
 

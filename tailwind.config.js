@@ -42,8 +42,7 @@ export const theme = {
 };
 export const plugins = [
   require('@tailwindcss/forms'),
-  require('preline/plugin'),
+  require('preline/tabs'),
  require("@tailwindcss/typography"), 
-  require("@tailwindcss/forms"),
 ];
 
