@@ -52,4 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add(...activeClass);
     });
   });
+});  
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.Preline) {
+      window.Preline.init();
+  }
 });
+
+
