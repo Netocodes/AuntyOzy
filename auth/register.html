@@ -6,6 +6,7 @@
     <title>Aunty Ozy kitchen</title>
     <link href="../dist/output.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="stylesheet" href="../node_modules/izitoast/dist/css/iziToast.min.css"> 
 </head>
 <body>
      <!-- ========== HEADER ========== -->
@@ -21,7 +22,7 @@
                     English (US)
                   </a>
                   <a id="txt-3" class="py-2  inline-flex justify-center items-center gap-2 font-medium text-gray-300 hover:text-neutral-500 text-sm dark:text-neutral-400 dark:hover:text-gray-300" href="#">Register</a>
-                  <a class="py-2 inline-flex items-center gap-x-2 text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 font-medium rounded-lg text-sm text-md px-3 md:px-6 text-center me-2 " href="#">Login</a>        </div>
+                  <a class="py-2 inline-flex items-center gap-x-2 text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 font-medium rounded-lg text-sm text-md px-3 md:px-6 text-center me-2 " href="../auth/login.html">Login</a>        </div>
           </div>
         </div>
         <!-- End Topbar -->
@@ -29,9 +30,6 @@
       
       </header>
       <!-- ========== END HEADER ========== -->
-    
-      
-    
     <section id="imgCtrl" class=" overflow-hidden w-full h-dvh relative top-0   bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1430163393927-3dab9af7ea38?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-gray-700 bg-blend-multiply">
       <!-- Hero -->
     <div class="overflow-hidden py-12">
@@ -40,12 +38,12 @@
             <div class="mt-7 max-w-2xl md:max-w-[25rem] mx-auto bg-white/75 border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
                 <div class="p-4 sm:p-7">
                   <div class="text-center">
-                    <h1 class="block text-2xl font-bold text-orange-500 dark:text-white">Register/Sign Up</h1>
+                    <h1 id="db" class="block text-2xl font-bold text-orange-500 dark:text-white">Register/Sign Up</h1>
                     
                   </div>
               
                   <div class="mt-5">
-                    <button type="button" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                    <button id="googleRegister" type="button" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                       <svg class="w-4 h-auto" width="46" height="47" viewBox="0 0 46 47" fill="none">
                         <path d="M46 24.0287C46 22.09 45.8533 20.68 45.5013 19.2112H23.4694V27.9356H36.4069C36.1429 30.1094 34.7347 33.37 31.5957 35.5731L31.5663 35.8669L38.5191 41.2719L38.9885 41.3306C43.4477 37.2181 46 31.1669 46 24.0287Z" fill="#4285F4"/>
                         <path d="M23.4694 47C29.8061 47 35.1161 44.9144 39.0179 41.3012L31.625 35.5437C29.6301 36.9244 26.9898 37.8937 23.4987 37.8937C17.2793 37.8937 12.0281 33.7812 10.1505 28.1412L9.88649 28.1706L2.61097 33.7812L2.52296 34.0456C6.36608 41.7125 14.287 47 23.4694 47Z" fill="#34A853"/>
@@ -58,7 +56,7 @@
                     <div class="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-600 dark:after:border-neutral-600">Or</div>
               
                     <!-- Form -->
-                    <form id="registerForm" class=" px-3 py-2">
+                    <form id="registerForm" autocomplete="on" class=" px-3 py-2">
                       <div class="grid gap-y-4">
                         <!-- Form group -->
                         <div class="max-w-sm space-y-3">
@@ -107,31 +105,21 @@
                         <!-- End Form Group -->
 
 
-                        <!-- Form Group -->
-                        <div class="relative">
-                          <input id="confirm-password" type="password" class="peer py-3 px-4 ps-11 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Confirm-password">
-                          <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
-                            <svg class="flex-shrink-0 size-4 text-gray-500 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"></path>
-                              <circle cx="16.5" cy="7.5" r=".5"></circle>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                        <!-- End Form Group -->
+                    
               
+                        <p id="alert" class="text-red-600 font-bold "></p>
                         <!-- Checkbox -->
                         <div class="flex items-center">
                           <div class="flex">
                             <input id="remember-me" name="remember-me" type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
                           </div>
                           <div class="ms-3">
-                            <label for="remember-me" class="text-sm dark:text-white">I accept the <a class="text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500" href="#">Terms and Conditions</a></label>
+                            <label for="remember-me" class="text-sm dark:text-white">I <span > accept</span> the <a class="text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500" href="#">Terms and Conditions</a></label>
                           </div>
                         </div>
                         <!-- End Checkbox -->
               
-                        <button type="submit" id="btn" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Sign up</button>
+                        <button type="submit" id="btn" class="disabled w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Sign up</button>
                       </div>
                     </form>
                     <!-- End Form -->
@@ -164,7 +152,7 @@
     <!-- - ========== END HEADER ========== - -->
 
     
-
+    <script src="../node_modules/izitoast/dist/js/iziToast.min.js" type="text/javascript"></script>
     <script src="../node_modules/preline/dist/preline.js"></script>
     <script type="module" src="auth.js"></script>
 </body>
