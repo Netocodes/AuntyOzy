@@ -9,7 +9,6 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  signOut,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 // import { signInWithEmailAndPassword, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
@@ -59,6 +58,7 @@ const registerUser = async (event) => {
       password: passWord.value,
     });
 
+    
     iziToast.show({
       title: `Welcome ${fullName.value}`,
       message: 'You have been Registered successfully',
@@ -78,34 +78,38 @@ const registerUser = async (event) => {
 
 
 const googleSignin = async () => {
-  signInWithPopup(auth, provider)
-    .then(async (result) => {
-      const user = result.user;
-      console.log("this=>", user.email);
+  try{
+  let googlecred = await signInWithPopup(auth, provider)
+  let user = googlecred.user
+console.log(googlecred.user.displayName)
 
-      window.localStorage.setItem("fullname", user.displayName);
-      window.localStorage.setItem("email", user.email);
-      window.localStorage.setItem("metadata", user.metadata);
-      window.localStorage.setItem("mobile", user.phoneNumber);
-      window.localStorage.setItem("photo", user.photoURL);
-      iziToast.show({
-        title: `Welcome ${user.displayName}`,
-        message: 'Welcome to Aunty Ozy Foodies',
-        position: 'topRight',
-        animateInside: true,
-        drag: true,
-        pauseOnHover: true,
-      });
-      setTimeout(() => {
-        // Redirect to another page after a delay of 2000ms (2 seconds)
-        window.location.href = "../index.html";
-      }, 5000);
-    
-    })
-    .catch((error) => {
+const userRef = doc(db, "userAuthList", googlecred.user.uid);
+  
+    await setDoc(userRef, {
+      fullname: googlecred.user.displayName ,
+      email: googlecred.user.email ,
+      mobile: googlecred.user. phoneNumber,
+      photo: googlecred.user.photoURL ,
+    });
+
+    iziToast.show({
+           title: `Welcome ${user.displayName}`,
+           message: 'Welcome to Aunty Ozy Foodies',
+           position: 'topRight',
+           animateInside: true,
+           drag: true,
+           pauseOnHover: true,
+         });
+         setTimeout(() => {
+           window.location.href = "../index.html";
+         }, 5000);
+
+
+  }
+    catch(error)  {
       console.log("check here", error.message);
       console.log(error.message);
-    });
+    };
 };
 
 // let signOut = () => {

@@ -6,7 +6,7 @@ const imgCtrl = document.getElementById("imgCtrl");
 const firstName = document.getElementById("hs-hero-name-1");
 const lastName = document.getElementById("hs-hero-name-2");
 const txt1 = document.getElementById("changeTxt-1");
-const txt2 = document.getElementById("txt-2");
+const txt2 = document.getElementById("getname");
 const txt3 = document.getElementById("txt-3");
 
 
@@ -16,6 +16,7 @@ if(scrollY > 56) {
 navChange.classList.add("bg-white")
 navChange.classList.add("shadow-lg")
 txt1.classList.add("text-gray-700")
+txt1.classList.remove("text-white")
 txt2.classList.add("text-gray-700")
 txt3.classList.add("text-gray-700")
 }
@@ -24,6 +25,7 @@ else{
 navChange.classList.remove("bg-white")
 navChange.classList.remove("shadow-lg")
 txt1.classList.remove("text-gray-700")
+
 txt2.classList.remove("text-gray-700")
 txt3.classList.remove("text-gray-700")
 }
@@ -38,6 +40,7 @@ txt3.classList.remove("text-gray-700")
 // page1.style.color = 'red'
 // })
 
+// ================Toggle variety of foods==================
 
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('.btn');
@@ -57,5 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });  
 
+// ================Toggle variety of foods==================
 
-
+document.addEventListener("DOMContentLoaded", () => {
+const checkStat = document.getElementById("user") 
+})

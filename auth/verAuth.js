@@ -35,81 +35,82 @@ let password = document.getElementById('logPass');
 const Form1 = document.getElementById("registerForm1");
 const submit = document.getElementById("btn");
 
-// let signInUser = (evt) => {
-//   evt.preventDefault();
 
+const checkbox = document.getElementById('remember-me');
+  checkbox.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+ 
 
-//   signInWithEmailAndPassword(auth, email.value, password.value)
-//     .then(async (credentials) => {
-//       console.log(credentials);
-//      let user = credentials.user
-//       var ref = doc(db, "userAuthList", credentials.user.uid);
-//       const docSnap = await getDoc(ref);
-//       if (docSnap.exists()) {
-//         localStorage.setItem(
-//           "user-info",
-//           JSON.stringify({
-//             fullname: docSnap.data().fullName,
-//             Mobile: docSnap.data().Mobile,
-//           })
-//         );
-//         localStorage.setItem("user-creds", JSON.stringify(credentials.user));
-//         iziToast.show({
-//           title: `Welcome ${fullName.value}`,
-//           message: 'Welcome to Aunty Ozy Foodies'
-//         });
-    
-//         setTimeout(() => {
-//           window.location.href = "../index.html";
-//         }, 5000);
-      
-//       }
-//     })
-//     .catch((error) => {
-//       console.log(error.code);
-//       console.log(error.message);
-//     });
-// };
-
-async function signInUser(e) {
+async function login(e) {
   e.preventDefault();
   try {
-    const credentials = await signInWithEmailAndPassword(auth, email.value, password.value);
+    const credentials = await signInWithEmailAndPassword(auth, email.value, password.value)
     console.log(credentials)
+    var ref = doc(db, "userAuthList", credentials.user.uid);
+           const docSnap = await getDoc(ref);
+           if (docSnap.exists()) {
+            const userInfo = docSnap.data();
+            localStorage.setItem("user-info", JSON.stringify(userInfo));
+            }
+            localStorage.setItem("user-creds", JSON.stringify(credentials.user));
 
+            const users = JSON.parse( localStorage.getItem("user-info"))
+           
+            iziToast.show({
+                     title: `Welcome ${users.fullname}`,
+                     message: 'Welcome to Aunty Ozy Foodies',
+                     position: 'topRight',
+                     animateInside: true,
+                     drag: true,
+                     pauseOnHover: true,
+                   });
+                  
+                   setTimeout(() => {
+                     window.location.href = "../index.html";
+                   }, 5000);
   } catch (error) {
-    console.log(`check here: ${error.message}`)
+    console.log(error.message)
   }
 }
 
+
 const googleSignin = async () => {
-  signInWithPopup(auth, provider)
-    .then(async (result) => {
-      const user = result.user;
+  try{
+  let googlecred = await signInWithPopup(auth, provider)
+  let user = googlecred.user
+console.log(googlecred.user.displayName)
 
-      window.localStorage.setItem("fullname", user.displayName);
-      window.localStorage.setItem("email", user.email);
-      window.localStorage.setItem("metadata", user.metadata);
-      window.localStorage.setItem("mobile", user.phoneNumber);
-      window.localStorage.setItem("photo", user.photoURL);
+const ref = doc(db, "userAuthList", googlecred.user.uid);
+  
+const docSnap = await getDoc(ref);
+if (docSnap.exists()) {
+ const userInfo = docSnap.data();
+ localStorage.setItem("user-info", JSON.stringify(userInfo));
+ }
+ localStorage.setItem("user-creds", JSON.stringify(user));
+
+ const users = JSON.parse( localStorage.getItem("user-info"))
 
 
-      iziToast.show({
-        title: `Welcome ${user.displayName}`,
-        message: 'Welcome to Aunty Ozy Foodies'
-      });
-      setTimeout(() => {
-
-        
-        window.location.href = "../index.html";
-      }, 5000);
-
-    })
-    .catch((error) => {
-      console.log("check here", error.code);
-      console.log(error.message);
+    iziToast.show({
+      title: `Hey, ${user.displayName}`,
+      message: 'Welcome to Aunty Ozy Foodies'
     });
+    setTimeout(() => {
+
+      
+      window.location.href = "../index.html";
+    }, 5000);
+
+
+  }
+    catch(error)  {
+      console.log("check here", error.message);
+      console.log(error.message);
+    };
 };
+
 
 const userSignOut = async () => {
   signOut(auth)
@@ -123,4 +124,4 @@ const userSignOut = async () => {
 
 let googleadd = document.getElementById("googleRegister")
 googleadd.addEventListener("click", googleSignin);
-Form1.addEventListener("click", signInUser)
+Form1.addEventListener("click", login)
