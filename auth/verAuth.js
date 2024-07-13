@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/fireba
 import {
   getFirestore,
   doc,
+  setDoc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 import {
@@ -44,7 +45,7 @@ const checkbox = document.getElementById('remember-me');
 
 async function login(e) {
   e.preventDefault();
-  try {
+      try {
     const credentials = await signInWithEmailAndPassword(auth, email.value, password.value)
     console.log(credentials)
     var ref = doc(db, "userAuthList", credentials.user.uid);
@@ -74,34 +75,32 @@ async function login(e) {
   }
 }
 
-
 const googleSignin = async () => {
   try{
   let googlecred = await signInWithPopup(auth, provider)
   let user = googlecred.user
 console.log(googlecred.user.displayName)
 
-const ref = doc(db, "userAuthList", googlecred.user.uid);
+const userRef = doc(db, "userAuthList", googlecred.user.uid);
   
-const docSnap = await getDoc(ref);
-if (docSnap.exists()) {
- const userInfo = docSnap.data();
- localStorage.setItem("user-info", JSON.stringify(userInfo));
- }
- localStorage.setItem("user-creds", JSON.stringify(user));
-
- const users = JSON.parse( localStorage.getItem("user-info"))
-
+    await setDoc(userRef, {
+      fullname: googlecred.user.displayName ,
+      email: googlecred.user.email ,
+      mobile: googlecred.user. phoneNumber,
+      photo: googlecred.user.photoURL ,
+    });
 
     iziToast.show({
-      title: `Hey, ${user.displayName}`,
-      message: 'Welcome to Aunty Ozy Foodies'
-    });
-    setTimeout(() => {
-
-      
-      window.location.href = "../index.html";
-    }, 5000);
+           title: `Welcome ${user.displayName}`,
+           message: 'Welcome to Aunty Ozy Foodies',
+           position: 'topRight',
+           animateInside: true,
+           drag: true,
+           pauseOnHover: true,
+         });
+         setTimeout(() => {
+           window.location.href = "../index.html";
+         }, 5000);
 
 
   }
@@ -112,15 +111,7 @@ if (docSnap.exists()) {
 };
 
 
-const userSignOut = async () => {
-  signOut(auth)
-    .then(() => {
-      alert("signout is successful");
-    })
-    .catch((error) => {
-      console.log(error.message);
-    });
-};
+
 
 let googleadd = document.getElementById("googleRegister")
 googleadd.addEventListener("click", googleSignin);

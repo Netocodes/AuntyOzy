@@ -6,8 +6,10 @@ const imgCtrl = document.getElementById("imgCtrl");
 const firstName = document.getElementById("hs-hero-name-1");
 const lastName = document.getElementById("hs-hero-name-2");
 const txt1 = document.getElementById("changeTxt-1");
+const changeNameColor = document.getElementById("getname");
 const txt2 = document.getElementById("getname");
 const txt3 = document.getElementById("txt-3");
+const addToCarts = document.querySelectorAll(".addToCart");
 
 
 document.addEventListener('scroll', () => {
@@ -15,8 +17,10 @@ if(scrollY > 56) {
 
 navChange.classList.add("bg-white")
 navChange.classList.add("shadow-lg")
-txt1.classList.add("text-gray-700")
+changeNameColor.classList.remove("text-white")
+changeNameColor.classList.add("text-gray-700")
 txt1.classList.remove("text-white")
+txt1.classList.add("text-gray-700")
 txt2.classList.add("text-gray-700")
 txt3.classList.add("text-gray-700")
 }
@@ -24,8 +28,10 @@ else{
 
 navChange.classList.remove("bg-white")
 navChange.classList.remove("shadow-lg")
+changeNameColor.classList.remove("text-gray-700")
+changeNameColor.classList.add("text-white")
 txt1.classList.remove("text-gray-700")
-
+txt1.classList.add("text-white")
 txt2.classList.remove("text-gray-700")
 txt3.classList.remove("text-gray-700")
 }
@@ -62,6 +68,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ================Toggle variety of foods==================
 
-document.addEventListener("DOMContentLoaded", () => {
-const checkStat = document.getElementById("user") 
+addToCarts.forEach(addToCart => {
+  addToCart.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('You clicked on ' + this.textContent);
+     console.log("yueejc")
+    });
 })
