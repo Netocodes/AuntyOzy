@@ -112,20 +112,8 @@ const userRef = doc(db, "userAuthList", googlecred.user.uid);
     };
 };
 
-// let signOut = () => {
-//   localStorage.removeItem("user-creds");
-//   localStorage.removeItem("user-info");
-//   window.location.href = "login.html";
-// };
 
 Form.addEventListener("submit", registerUser);
 googleBtn.addEventListener("click", googleSignin);
 
-let iti = document.getElementById("db");
-iti.addEventListener('click', () =>{
-  iziToast.show({
-    title: 'Hey',
-    message: 'What would you like to add?'
-  });
-});
 

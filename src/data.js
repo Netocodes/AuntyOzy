@@ -10,6 +10,7 @@ import {
     getDoc,
   } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyC2RfOXZsAx7U2h14TcCiyfrWE1qb2cFZk",
   authDomain: "auntyozy.firebaseapp.com",
@@ -50,7 +51,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
  onAuthStateChanged(auth, (user) => {
    if (user) {
- notLoggedIn.classList.add("hidden")
+ notLoggedIn.style.display = 'none'
+ loggedIn.style.display ="flex"
+//  let parsed = localStorage.getItem(userInfo.fullname)
+//  let newParse = JSON.parse(parsed)
+//  console.log(newParse)
      const mainName = user.displayName;
      const photo = user.photoURL
      getName.innerText = mainName
@@ -58,9 +63,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
      console.log(user)
    } else {
-     notLoggedIn.classList.remove("hidden")
-     loggedIn.classList.add("hidden")
-  
+     notLoggedIn.style.display = 'flex'
+ loggedIn.style.display ="none"
    }
  });
 })
