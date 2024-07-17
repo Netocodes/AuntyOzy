@@ -44,5 +44,6 @@ export const plugins = [
   require('@tailwindcss/forms'),
   require('preline/tabs'),
  require("@tailwindcss/typography"), 
+ require("@preline/overlay"), 
 ];
 
