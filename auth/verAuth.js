@@ -52,24 +52,25 @@ async function login(e) {
            const docSnap = await getDoc(ref);
            if (docSnap.exists()) {
             const userInfo = docSnap.data();
-            localStorage.setItem("user-info", JSON.stringify(userInfo));
-            }
-            localStorage.setItem("user-creds", JSON.stringify(credentials.user));
+            const userName =  userInfo.fullname
+      console.log(userName);
 
-            const users = JSON.parse( localStorage.getItem("user-info"))
+      iziToast.show({
+        title: `Welcome ${userName}`,
+        message: 'Welcome to Aunty Ozy Foodies',
+        position: 'topRight',
+        animateInside: true,
+        drag: true,
+        pauseOnHover: true,
+      });
+     
+      setTimeout(() => {
+        window.location.href = "../index.html";
+      }, 5000);
+            }
+          
            
-            iziToast.show({
-                     title: `Welcome ${users.fullname}`,
-                     message: 'Welcome to Aunty Ozy Foodies',
-                     position: 'topRight',
-                     animateInside: true,
-                     drag: true,
-                     pauseOnHover: true,
-                   });
-                  
-                   setTimeout(() => {
-                     window.location.href = "../index.html";
-                   }, 5000);
+            
   } catch (error) {
     console.log(error.message)
   }
@@ -116,4 +117,7 @@ const userRef = doc(db, "userAuthList", googlecred.user.uid);
 
 let googleadd = document.getElementById("googleRegister")
 googleadd.addEventListener("click", googleSignin);
-Form1.addEventListener("click", login)
+Form1.addEventListener("submit", (e) => {
+  e.preventDefault();
+  login(e)
+})

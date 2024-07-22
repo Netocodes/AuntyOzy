@@ -57,25 +57,12 @@ document.addEventListener("DOMContentLoaded", function () {
 // ================Toggle variety of foods==================
 
 // ========================================= CheckOut information =====================================
-// const cartItem1 = document.getElementById("addEgusiSoup");
-// const cartItem2 = document.getElementById("addOkraSoup");
-// const cartItem3 = document.getElementById("addOraSoup");
-// const cartItem4 = document.getElementById("addOnugboSoup");
-// const cartItem5 = document.getElementById("addVegetableSoup");
-// const cartItem6 = document.getElementById("addNsalaSoup");
-// const cartItem7 = document.getElementById("addTomatoeStew");
-// const cartItem8 = document.getElementById("addOfeAkwu");
-// const cartItem9 = document.getElementById("addWhiteSauceStew");
-// const cartItem10 = document.getElementById("addToJollofRIce");
-// const cartItem11 = document.getElementById("addTofriedRice");
-// const cartItem12 = document.getElementById("addToCoconutRice");
-// const cartItem13 = document.getElementById("addtoGoatPepersoup");
-// const cartItem14 = document.getElementById("addToChikenPepersoup");
-// const cartItem15 = document.getElementById("addtoOxtailpepersoup");
-// const cartItem16 = document.getElementById("cardtItem16");
-// const cartItem17 = document.getElementById("cardtItem17");
-// const cartItem18 = document.getElementById("cardtItem18");
 
+// main.js
+
+
+
+// ========================================= ADDTOCART =====================================
 class cartObj {
   constructor(id, foodName, tag, price, quantity, protein, swallow) {
     this.food = foodName;
@@ -98,7 +85,7 @@ const cartItems = [
     "Vegetable Soup",
     1,
     1600,
-    2,
+    1,
     "Beef",
     "Garri"
   ),
@@ -110,7 +97,7 @@ const cartItems = [
     "White sauce Stew",
     1,
     1600,
-    9,
+    1,
     "Beef",
     "Garri"
   ),
@@ -123,7 +110,7 @@ const cartItems = [
     "Chicken Pepersoup",
     1,
     1600,
-    14,
+    1,
     "Beef",
     "Garri"
   ),
@@ -132,7 +119,7 @@ const cartItems = [
     "Oxtail pepersoup",
     1,
     1600,
-    15,
+    1,
     "Beef",
     "Garri"
   ),
@@ -152,24 +139,52 @@ function addToCart(product) {
   } else {
     cart.push(product);
   }
+  
+  console.log("cartString")
   updateCartIcon();
 }
+
+
+let itemNumber;
+
 function updateCartIcon() {
   const cartIcon = document.getElementById("cart-item");
   const totalItems = cart.reduce((total, item) => total + item.Quantity, 0);
+   itemNumber = totalItems.toString()
+   console.log(itemNumber)
+  
   cartIcon.innerText = totalItems.toString();
   let ping = document.getElementById("ping");
   ping.style.display = "block";
+
 }
+
+
 
 // Function to handle button clicks
 function handleButtonClick(event) {
+  event.preventDefault();
   const buttonId = event.target.dataset.id;
   console.log(`This is the Selected ID ${buttonId}`);
   const product = cartItems.find((p) => p.Id === buttonId);
+
+  console.log(product.food)
+  
+
   if (product) {
     addToCart(product);
-    console.log(product);
+    iziToast.success(
+      {
+        title: "Successfully Created",
+        message:` Click on the cart button on the top to choose your prefered protein`,
+        position: "topLeft",
+        messageSize: "30px",
+        messageColor: "black",
+      },
+      2000
+    );
+    
+ 
   } else {
     iziToast.error(
       {
@@ -187,269 +202,11 @@ let classHandle = document.querySelectorAll(".addTocart");
 classHandle.forEach((button) => {
   button.addEventListener("click", handleButtonClick);
 });
-// document.addEventListener('click', (e) => {
-//   e.preventDefault();
-//    let cart = document.querySelectorAll('.addTocart')
 
-//    cart.forEach(button => {
-//     cart = handleButtonClick();
+// ========================================= ADDTOCART =====================================
 
-//   });
-// })
-
-// Attach event listeners to all buttons with the class 'addToCartBtn'
-
-// ========================================= CheckOut information =====================================
-// cartItem1.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem1.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem1);
-// });
-// cartItem2.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem2.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem3);
-// });
-// cartItem3.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem3.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem3);
-// });
-// cartItem4.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem4.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem4);
-// });
-// cartItem5.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem5.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem5);
-// });
-// cartItem6.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem6.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem6);
-// });
-// cartItem7.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem7.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem7);
-// });
-// cartItem8.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem8.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem8);
-// });
-// cartItem9.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem9.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem9);
-// });
-// cartItem10.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem10.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem10);
-//   window.location.href = '../Checkout/checkout.html'
-// });
-// cartItem11.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem11.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem11);
-// });
-// cartItem12.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem12.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem12);
-// });
-// cartItem13.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem13.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem13);
-// });
-// cartItem14.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem14.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem14);
-// });
-// cartItem15.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem15.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem15);
-// });
-// cartItem16.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem16.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem16);
-// });
-// cartItem17.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem17.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem17);
-// });
-// cartItem18.addEventListener('click', (e) => {
-//   e.preventDefault()
-//   let fun;
-//   fun = cartItems.cartItem18.food;
-//   console.log(fun)
-//   iziToast.success({
-//     title: 'OK',
-//     message: `Added ${fun} to your cart`,
-//     position: 'topCenter',
-//     timeout: 4000,
-// });
-// window.location.href = './Checkout/checkout.html'
-//   console.log(cartItems.cartItem18);
-// });
+   let cartbtn = document.getElementById("linkCard")
+   cartbtn.addEventListener("click", (e) => {
+   e.preventDefault();
+    window.location.href = './Checkout/checkout.html'
+ });
