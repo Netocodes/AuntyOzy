@@ -9,9 +9,9 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signOut,
+
   signInWithEmailAndPassword,
-  onAuthStateChanged,
+  
 } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 // import { signInWithEmailAndPassword, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
@@ -48,7 +48,7 @@ async function login(e) {
       try {
     const credentials = await signInWithEmailAndPassword(auth, email.value, password.value)
     console.log(credentials)
-    var ref = doc(db, "userAuthList", credentials.user.uid);
+    let ref = doc(db, "userAuthList", credentials.user.uid);
            const docSnap = await getDoc(ref);
            if (docSnap.exists()) {
             const userInfo = docSnap.data();
